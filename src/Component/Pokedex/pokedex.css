@@ -1,0 +1,12 @@
+.tileContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around
+}
+.Box {
+    display: flex;
+    padding: 16px;
+    justify-content: space-around;
+    flex: 1;
+    margin-top: 16px;
+}
