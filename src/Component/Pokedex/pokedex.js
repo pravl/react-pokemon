@@ -3,7 +3,6 @@ import './pokedex.css';
 import { PokemonTile } from "../PokemonTile/pokemonTile"
 import { data } from "../../MockData/mockData"
 import { CompareTable } from "../CompareTable/compareTable"
-import Modal from "../Modal/Modal"
 
 export class Pokedex extends React.Component 
 {
