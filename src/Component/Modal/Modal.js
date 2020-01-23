@@ -5,6 +5,17 @@ import "./Modal.css";
 
 export default ({ isOpen, onRequestClose, onCheckBox, filters, attribute }) => {
     const [filterValue, setFilterValue] = useState(attribute)
+    const allFilters = attribute
+    const onSearch = (e) => {
+        const searchValue = e.target.value
+        if (e.target.value.length === 0) {
+            setFilterValue(attribute)
+            return
+        }
+               let a = filterValue.filter(x => Object.keys(x)[0].toLowerCase().includes(searchValue))
+               setFilterValue(a)
+    }
+
   return (
     <Modal
       isOpen={isOpen}
@@ -27,58 +38,26 @@ export default ({ isOpen, onRequestClose, onCheckBox, filters, attribute }) => {
         <h3>Edit Attributes</h3>
       </div>
       <div className="search">
-        <input className="input" type="text" placeholder="search attribute" />
+        <input className="input" type="text" placeholder="search attribute" onChange={(e) => onSearch(e)}/>
       </div>
-      <div className="checkbox">
+
+
+      {
+        filterValue.map((x,id) => {
+            let key = Object.keys(x)[0]
+            let value = Object.values(x)[0]
+        return (<div className="checkbox">
         <input
           className="input-check"
-          checked={filters.all}
+          checked={filters[value]}
           type="checkbox"
-          name="all"
+          name={value}
           onChange={e => onCheckBox(e)}
         />
-        <label>Select All</label>
-      </div>
-      <div className="checkbox">
-        <input
-          className="input-check"
-          type="checkbox"
-          checked={filters.weakness}
-          name="weakness"
-          onChange={e => onCheckBox(e)}
-        />
-        <label>Weakness</label>
-      </div>
-      <div className="checkbox">
-        <input
-          className="input-check"
-          type="checkbox"
-          checked={filters.type}
-          name="type"
-          onChange={e => onCheckBox(e)}
-        />
-        <label>Type</label>
-      </div>
-      <div className="checkbox">
-        <input
-          className="input-check"
-          type="checkbox"
-          checked={filters.abilities}
-          name="abilities"
-          onChange={e => onCheckBox(e)}
-        />
-        <label>Ability</label>
-      </div>
-      <div className="checkbox">
-        <input
-          className="input-check"
-          type="checkbox"
-          checked={filters.weight}
-          name="weight"
-          onChange={e => onCheckBox(e)}
-        />
-        <label>Weight</label>
-      </div>
+        <label>{key}</label>
+      </div>)
+      })
+    }
       <br></br>
       <div className="apply-div">
         <button className="apply" onClick={onRequestClose}>
