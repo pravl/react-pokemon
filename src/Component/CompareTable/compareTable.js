@@ -9,7 +9,7 @@ export class CompareTable extends React.Component {
     filter: {}
   };
 
-    types = ["Select All","Ability", "Weakness", "Weight", "Type"]
+  types = ["Select All","Ability", "Weakness", "Weight", "Type"]
 
   getDetail = (id, att) => {
     const { data } = this.props;
@@ -80,7 +80,7 @@ export class CompareTable extends React.Component {
       <>
         <Modal
           filters={filter}
-          attribute={types}
+          attribute={this.types}
           onCheckBox={e => this.onSelectCheckBox(e)}
           isOpen={isOpen}
           onRequestClose={() => this.onApplyHandler()}
